@@ -1,0 +1,1 @@
+Doc´s publicos, recordar no ponerle extensión. ya que los pedidos, por razones de seguridad no admiten ni "." ni "/" ni "\"

@@ -1,0 +1,6 @@
+El código no estaba hecho para ser abierto por ello no esta hecho para que cualquiera lo entenda. Fue hecho "apurado" para el server de un amigo y por eso.
+Por ello no es muy claro y, por ejemplo en lugar de usar:
+Load Winsock1(NumSocks) use , por ejemplo, poniendo 3 sockets de una y... ¡ya fue! ;).
+Con respecto a su consumo de memoria y velocidad de procesamiento solo digo que es menor a la de Apache y IIS ;).
+
+-Si encontraste un bug: ltourrilhes@cnba.uba.ar

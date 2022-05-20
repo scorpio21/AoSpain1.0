@@ -1,0 +1,379 @@
+[Root]
+Most Recent Package=inst
+
+
+[Package|Instalacion|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\[Argentum Online]\[Map Editor]\Instalador
+
+[Package|Instalacion|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Instalacion|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Instalacion|Files Found]
+
+[Package|Instalacion|Files Released]
+
+[Package|Instalacion|Missing Dependency Information]
+C:\WINDOWS\SYSTEM\dx7vb.dll=
+
+[Package|Instalacion|Out-of-Date Dependency Information]
+
+[Package|Instalacion|Files Added]
+
+[Package|Instalacion|Files Removed]
+
+[Package|Instalacion|Files In Project]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=Yes
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\SYSTEM\VB6ES.DLL=Yes
+C:\WINDOWS\SYSTEM\dx7vb.dll=Yes
+C:\WINDOWS\SYSTEM\comdlg32.ocx=Yes
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINDOWS\SYSTEM\VB6STKIT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Instalacion|Configure Registry Files]
+Applicable=No
+
+[Package|Instalacion|Configure Remote Servers]
+Applicable=No
+
+[Package|Instalacion|Install Locations]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=$(AppPath)
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\VB6ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\dx7vb.dll=$(WinSysPath)
+C:\WINDOWS\SYSTEM\comdlg32.ocx=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\SYSTEM\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Instalacion|Configure Shared Files]
+Applicable=Yes
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=No
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+
+[Package|Instalacion|Distribution]
+Type=single
+Size=
+Title=Online RPG Engine Map Editor
+
+[Package|Instalacion|IconGroups]
+Group0=Online RPG Engine Map Editor
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Instalacion|Online RPG Engine Map Editor]
+Icon1="Map Editor.exe"
+Title1=Online RPG Engine Map Editor
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Instalacion|Package]
+PackageFolder=C:\[Argentum Online]\[Map Editor]\Instalador
+ProjectFolder=C:\[Argentum Online]\[Map Editor]
+ServerSideCab=
+File1=C:\[Argentum Online]\[Map Editor]\Instalador\setup.exe
+File2=C:\[Argentum Online]\[Map Editor]\Instalador\Setup.Lst
+File3=C:\[Argentum Online]\[Map Editor]\Instalador\Map Editor.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|Archivo .dep 1|Root]
+SubWizProgID=PDWizard.DepPkgSubWiz
+BuildFolder=C:\[Argentum Online]\[Map Editor]\Dependencias
+
+[Package|Archivo .dep 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Archivo .dep 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Archivo .dep 1|Files Found]
+
+[Package|Archivo .dep 1|Files Released]
+
+[Package|Archivo .dep 1|Missing Dependency Information]
+C:\WINDOWS\SYSTEM\dx7vb.dll=
+
+[Package|Archivo .dep 1|Out-of-Date Dependency Information]
+
+[Package|Archivo .dep 1|Files Added]
+
+[Package|Archivo .dep 1|Files Removed]
+
+[Package|Archivo .dep 1|Files In Project]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=Yes
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\SYSTEM\VB6ES.DLL=Yes
+C:\WINDOWS\SYSTEM\dx7vb.dll=Yes
+C:\WINDOWS\SYSTEM\comdlg32.ocx=Yes
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=Yes
+C:\Archivos de programa\Archivos comunes\SYSTEM\ADO\msado15.dll=Yes
+
+[Package|Archivo .dep 1|Configure Registry Files]
+Applicable=No
+
+[Package|Archivo .dep 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Archivo .dep 1|Install Locations]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=$(AppPath)
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\VB6ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\dx7vb.dll=$(WinSysPath)
+C:\WINDOWS\SYSTEM\comdlg32.ocx=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\SYSTEM\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Archivos de programa\Archivos comunes\SYSTEM\ADO\msado15.dll=$(CommonFilesSys)\ADO
+
+[Package|Archivo .dep 1|Configure Shared Files]
+Applicable=Yes
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=No
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+
+[Package|Archivo .dep 1|Distribution]
+Type=single
+Size=
+Title=Online RPG Engine Map Editor
+
+[Package|Archivo .dep 1|IconGroups]
+Group0=Online RPG Engine Map Editor
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Archivo .dep 1|Online RPG Engine Map Editor]
+Icon1="Map Editor.exe"
+Title1=Online RPG Engine Map Editor
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Archivo .dep 1|DepFile]
+DepCabFile=Map Editor.CAB
+DepCabRun=Map Editor.INF
+
+[Package|Archivo .dep 1|Package]
+PackageFolder=C:\[Argentum Online]\[Map Editor]\Dependencias
+ProjectFolder=C:\[Argentum Online]\[Map Editor]
+ServerSideCab=
+File1=C:\[Argentum Online]\[Map Editor]\Dependencias\Map Editor.DEP
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|Archivo .dep 2|Root]
+SubWizProgID=PDWizard.DepPkgSubWiz
+BuildFolder=C:\[Argentum Online]\[Map Editor]
+
+[Package|Archivo .dep 2|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Archivo .dep 2|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Archivo .dep 2|Files Found]
+
+[Package|Archivo .dep 2|Files Released]
+
+[Package|Archivo .dep 2|Missing Dependency Information]
+
+[Package|Archivo .dep 2|Out-of-Date Dependency Information]
+
+[Package|Archivo .dep 2|Files Added]
+
+[Package|Archivo .dep 2|Files Removed]
+
+[Package|Archivo .dep 2|Files In Project]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=Yes
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\SYSTEM\VB6ES.DLL=Yes
+C:\WINDOWS\SYSTEM\dx7vb.dll=Yes
+C:\Archivos de programa\Archivos comunes\SYSTEM\ADO\msado15.dll=Yes
+C:\WINDOWS\SYSTEM\comdlg32.ocx=Yes
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=Yes
+
+[Package|Archivo .dep 2|Configure Registry Files]
+Applicable=
+
+[Package|Archivo .dep 2|Configure Remote Servers]
+Applicable=
+
+[Package|Archivo .dep 2|Install Locations]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=$(AppPath)
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\VB6ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\dx7vb.dll=$(WinSysPath)
+C:\Archivos de programa\Archivos comunes\SYSTEM\ADO\msado15.dll=$(CommonFilesSys)\ADO
+C:\WINDOWS\SYSTEM\comdlg32.ocx=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=$(WinSysPath)
+
+[Package|Archivo .dep 2|Configure Shared Files]
+Applicable=
+
+[Package|Archivo .dep 2|DepFile]
+DepCabFile=Map Editor.CAB
+DepCabRun=Map Editor.INF
+
+[Package|Archivo .dep 2|Package]
+PackageFolder=C:\[Argentum Online]\[Map Editor]
+ProjectFolder=C:\[Argentum Online]\[Map Editor]
+ServerSideCab=
+File1=C:\[Argentum Online]\[Map Editor]\Map Editor.DEP
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|inst|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\EditorDist
+
+[Package|inst|Configure DAO ISAMs]
+Applicable=No
+
+[Package|inst|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|inst|Files Found]
+
+[Package|inst|Files Released]
+
+[Package|inst|Missing Dependency Information]
+C:\WINNT\system32\dx7vb.dll=
+
+[Package|inst|Out-of-Date Dependency Information]
+
+[Package|inst|Files Added]
+
+[Package|inst|Files Removed]
+
+[Package|inst|Files In Project]
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\[Argentum]\[Map Editor]\Map Editor.exe=Yes
+C:\WINNT\system32\Msvbvm60.dll=Yes
+C:\WINNT\system32\VB6ES.DLL=Yes
+C:\WINNT\system32\dx7vb.dll=Yes
+C:\WINNT\system32\Comdlg32.ocx=Yes
+C:\WINNT\system32\CMDLGES.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINNT\system32\VB6STKIT.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|inst|Configure Registry Files]
+Applicable=No
+
+[Package|inst|Configure Remote Servers]
+Applicable=No
+
+[Package|inst|Install Locations]
+C:\[Argentum Online]\[Map Editor]\Map Editor.exe=$(AppPath)
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\VB6ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\dx7vb.dll=$(WinSysPath)
+C:\Archivos de programa\Archivos comunes\SYSTEM\ADO\msado15.dll=$(CommonFilesSys)\ADO
+C:\WINDOWS\SYSTEM\comdlg32.ocx=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=$(WinSysPath)
+C:\[Argentum]\[Map Editor]\Map Editor.exe=$(AppPath)
+C:\WINNT\system32\Msvbvm60.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\VB6ES.DLL=$(WinSysPath)
+C:\WINNT\system32\dx7vb.dll=$(WinSysPath)
+C:\WINNT\system32\Comdlg32.ocx=$(WinSysPath)
+C:\WINNT\system32\CMDLGES.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|inst|Configure Shared Files]
+Applicable=Yes
+C:\[Argentum]\[Map Editor]\Map Editor.exe=No
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+
+[Package|inst|DepFile]
+DepCabFile=Map Editor.CAB
+DepCabRun=Map Editor.INF
+
+[Package|inst|Distribution]
+Type=single
+Size=
+Title=Argentum Map Editor
+
+[Package|inst|IconGroups]
+Group0=Argentum Map Editor
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|inst|Argentum Map Editor]
+Icon1="Map Editor.exe"
+Title1=Argentum Map Editor
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|inst|Package]
+PackageFolder=C:\EditorDist
+ProjectFolder=C:\[Argentum]\[Map Editor]
+ServerSideCab=
+File1=C:\EditorDist\setup.exe
+File2=C:\EditorDist\Setup.Lst
+File3=C:\EditorDist\Map Editor.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

@@ -1,0 +1,2 @@
+El server todavía esta en etapa de testeo. No es recomendable usarlo hasta su versión definitiva.
+Igualmente si tienen un server en etapa de teste los agradeceria que lo probaran ;).

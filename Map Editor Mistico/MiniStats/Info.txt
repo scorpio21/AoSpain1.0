@@ -1,0 +1,10 @@
+Información de las carpetas:
+Codigo -> El código del programa. Escrito en Visual Basic.
+Ejecutable -> El código ya compilado. Nescesita las Visual Basic Runtimes.
+Nescesarios -> Archivos Ocx y Dll nescesarios para ejecutar.
+-DuNga. AoLiteStatsServer.
+
+---------------------------
+Sistema de mini-estadísticas redistribuido por UASU Games!
+www.uasu.tk
+---------------------------

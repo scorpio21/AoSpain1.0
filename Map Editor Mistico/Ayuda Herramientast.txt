@@ -1,0 +1,45 @@
+Soy nico, es 5 de febrero del 2004, espero mas adelante poder hacer un manual con las indicaciones de mapeo, por el momento solo dejo unas breves indicaciones sobre algunas herramientas especificas, que alguna puede llegar a ser complicada de entender otra mas facil.
+
+----------------------=Cambios Notorios=----------------------
+
+"Botonitos y cuadros de texto todos locos" a lado de la el mini mapa, se encuentran unos botones junto con unos cuadros de texto, esto sirve para no tener que entrar en herramientas para incrementar los valores de los exits, eso si falta terminarlo, ya que no actualiza con respecto al de herramientas a menos que nosotros pongamos los valores en herramientas o bien incrementemos/decrementemos con los botones para esta tarea. Esto con respecto a "Salida X" "Salida Y".
+
+"Mapa" esto sirve para poner el mapa al cual nosotros queremos que salga la salida, al poner el numeno ahi, inmediatamente ponemos en colocar exit, sin necesidad de entrar en herramientas.
+
+"Telep Mode" esto es sumamente util para poner muchos portales dentro de un mismo mapa, esta herramienta fue especialmente hecha para el mapa "La Colmena" paso previo al "Dungeon Master" de Ao-Mistico, que contiene mas de 216 portales dentro del mismo mapa; La manera de uso es poniendo el mapa actual, para que los portales queden en este mapa, apretando con el boton derecho del mouse para determinar las coordenadas, luego con el boton izquierdo para determinar el punto de colocacion del teleport, Atencion, tambien coloca el objeto teleport.
+
+"Cambiar de vista" tiene el titulo de "Cambiar de vista pero se delira mal" a manera de cargada y recordatorio que no esta completamente terminado, por que por ahi tiene algunos errores, el objetivo de esto es poder agrandar la visual de los mapas, para poder ver mas espacios.
+El inconveniente es que al seleccionarlo, desaparece todo el mapa, pero es cuestion de releerlo, y se vera grande, asi tambien cuando ponermos para achicar se delira de la misma forma, pero queda un marco a la vuelta, del draw anterior.
+
+"Blq vacio 4x4" sirve para hacer blockeos y borrar todas las capas en un area de 4x4 tildes, poniendo el grh vacio.
+
+"Bloq 4x4" Blockea en un area de 4x4, pero tambien te permite seguir dibujando en 1 tilde, blockeando el cuadrado formado por por 3 mas a  la derecha y hacia abajo.
+
+"Poner exits" en el menú de arriba (mapa-->Poner Exits) se implemento esta herramienta simple, pero extraordinaria, que coloca las salidas hacia los mapas adyacentes con solo poner el numero del mapa, si no deseamos que tenga salida, simplemente borramos el numero y dejamos vacio.
+La colocacion de los exist es la siguiente, a los 7 tildes desde arriba, los 7 desde abajo y 8 de los costados, hacia los 8 de arriba y abajo, y 9 desde los costados. todo sin cometer ningun error y completamente adyacentes. desde el 1 al 100.
+
+"Trig 4x4" en el menú Herramintas (Herramientas-->Trig 4x4) no necesita mucha explicacion, es para la tediosa tarea de poner triggers lo hace en 4x4.
+
+"Borrar arboles" Andando, cambiada la vieja funcion que hacia los arboles npcs en objetos, por eliminarlos de una.
+
+"Borrar Npcs" No terminada, pero anda, algo por lo menos.
+
+"Rellenar 4x4" & "Rellenar 2x2" si necesidad de explicar tampoco tanto, lo que ahce es rellenar una superficie con el terreno o piso que tengamos seleccionado, en su 2 presentaciones.
+
+Pequeñas correcciones, como que te diga que numero de objeto es, es tan simple como eso, pero tan util.
+
+----------------------<Errores Reparado>----------------------
+Entre otros como el cancelar despues de apretar sin querer en guardar.
+Recordatorio de los nombres y carpetas donde estabamos trabajando, que en algunos casos, no lo hacia en versiones anteriores.
+Tildar fuera de el area mapeable, lo que causaba un error fatal, salvo su ejecucion desde el codigo.
+Descubrir que una de las mayores causas ademas de no tener los componentes jetole de bindor, es que la base de datos esta como solo lectura, por eso no se podia abrir, pequeño error tan asqueroso como el del comercio seguro.
+Esto es lo que recuerdo.
+
+---------------------->Pendientes<----------------------
+Actualizacion de mapas, ya que los arboles son borrados pero no actualizados.
+Algun tipo de vista mejorada por capas.
+algun sistema de reconocimiento de vos para que ni tengamos que escribir y nos haga el mapa que querramos de una :P.
+
+---Nico, tranfu_nik@hotmail.com icq: 325636253.
+
+

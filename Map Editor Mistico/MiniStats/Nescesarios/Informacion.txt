@@ -1,0 +1,8 @@
+En esta carpeta se encuentran archivos que se deben copiar a la carpeta system(en Windows 95/98/Me) y System32(En Windows NT 4.0/2000/XP)
+*A posterior de copiarlos se debe registrar el Systray:
+Inicio > Ejecutar > "regsvr32 SysTray.ocx"
+*Estos archivos no fueron desarrollados por DuNga y se deben aceptar aparte sus licencias que se encuentran en:
+vbSendMail: www.vbfreecode.com
+Systray: No encontre la informacion :(...
+Ambos son entregados junto con su código pero no es entregado por cuestiones de espacio. Si lo nescesitan me lo pueden pedir:
+ltourrilhes@cnba.uba.ar
