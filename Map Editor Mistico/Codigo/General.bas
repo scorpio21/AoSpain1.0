@@ -37,6 +37,106 @@ Declare Function getprivateprofilestring Lib "Kernel32" Alias "GetPrivateProfile
 
 'For KeyInput
 Declare Function GetKeyState Lib "user32" (ByVal nVirtKey As Long) As Integer
+Sub SwitchMap2(Map As String)
+ Dim Y As Long
+    Dim X As Long
+   
+    Dim tempbyte As Byte
+    Dim tempint As Integer
+    Dim templong As Long
+   
+    Dim ByFlags As Byte
+    Dim handle As Integer
+   
+    Dim handleBloq As Integer
+    handleBloq = FreeFile()
+   
+    If FileExist(App.Path & "\temp.txt", vbArchive) Then Kill App.Path & "\temp.txt"
+    DoEvents
+   
+    Open App.Path & "\temp.txt" For Append As #handleBloq
+   
+    handle = FreeFile()
+   
+    ' Cargamos el mapa...
+    Open Map For Binary As handle
+    Seek handle, 1
+           
+    'map Header
+    Get handle, , MapInfo.MapVersion
+    Get handle, , MiCabecera
+    Get handle, , tempint
+    Get handle, , tempint
+    Get handle, , tempint
+    Get handle, , tempint
+   
+    'Load arrays
+    Dim line As String
+       
+    For Y = YMinMapSize To YMaxMapSize
+        For X = XMinMapSize To XMaxMapSize
+            Get handle, , ByFlags
+           
+            Buffer(X, Y).Blocked = (ByFlags And 1)
+                     
+            Get handle, , templong ' grh 0
+            If templong < 32000 Then
+                Buffer(X, Y).Graphic(1).GrhIndex = templong
+                Grh_Initialize Buffer(X, Y).Graphic(1), Buffer(X, Y).Graphic(1).GrhIndex
+            End If
+          
+            If ByFlags And 2 Then ' grh 1 long
+                Get handle, , templong
+                If templong < 32000 Then
+                    Buffer(X, Y).Graphic(2).GrhIndex = templong
+                    Grh_Initialize Buffer(X, Y).Graphic(2), Buffer(X, Y).Graphic(2).GrhIndex
+                End If
+                If strange Then
+                    Debug.Print templong
+                End If
+            End If
+           
+            If ByFlags And 4 Then ' grh 2 long
+                Get handle, , templong
+                If templong < 32000 Then
+                    Buffer(X, Y).Graphic(3).GrhIndex = templong
+                    Grh_Initialize Buffer(X, Y).Graphic(3), Buffer(X, Y).Graphic(3).GrhIndex
+                End If
+            End If
+           
+             If ByFlags And 8 Then ' grh 3 long
+                Get handle, , templong
+                If templong < 32000 Then
+                    Buffer(X, Y).Graphic(4).GrhIndex = templong
+                    Grh_Initialize Buffer(X, Y).Graphic(4), Buffer(X, Y).Graphic(4).GrhIndex
+                End If
+            End If
+           
+            If ByFlags And 16 Then ' trigger
+                Get handle, , tempint
+                If tempint < 255 Then
+                    Buffer(X, Y).Trigger = tempint
+                End If
+            End If
+           
+            If Buffer(X, Y).Blocked = 1 Then
+                line = line & "######"
+            Else
+                line = line & "      "
+            End If
+        Next X
+        Print #handleBloq, line & vbCrLf
+        line = vbNullString
+    Next Y
+   
+    Close handle
+    Close handleBloq
+   
+    Exit Sub
+errorH:     ' Mapas
+   
+    Call MsgBox("Error en el formato del Mapa " & Map, vbCritical + vbOKOnly, "Argentum Online")
+End Sub
 
 
 Sub SwitchMap(Map As String)
@@ -44,12 +144,12 @@ Sub SwitchMap(Map As String)
 'Loads and switches to a new room
 '*****************************************************************
 Dim LoopC As Integer
-Dim TempInt As Integer
+Dim tempint As Integer
 Dim Body As Integer
 Dim Head As Integer
 Dim Heading As Byte
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
    
 'Change mouse icon
 frmMain.MousePointer = 11
@@ -68,77 +168,77 @@ Seek #2, 1
 'Cabecera map
 Get #1, , MapInfo.MapVersion
 Get #1, , MiCabecera
-Get #1, , TempInt
-Get #1, , TempInt
-Get #1, , TempInt
-Get #1, , TempInt
+Get #1, , tempint
+Get #1, , tempint
+Get #1, , tempint
+Get #1, , tempint
 
 'Cabecera inf
-Get #2, , TempInt
-Get #2, , TempInt
-Get #2, , TempInt
-Get #2, , TempInt
-Get #2, , TempInt
+Get #2, , tempint
+Get #2, , tempint
+Get #2, , tempint
+Get #2, , tempint
+Get #2, , tempint
 
 
 'Load arrays
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
 
         '.map file
-        Get #1, , MapData(x, y).Blocked
+        Get #1, , MapData(X, Y).Blocked
         For LoopC = 1 To 4
-            Get #1, , MapData(x, y).Graphic(LoopC).GrhIndex
+            Get #1, , MapData(X, Y).Graphic(LoopC).GrhIndex
             
             'Set up GRH
-            If MapData(x, y).Graphic(LoopC).GrhIndex > 0 Then
+            If MapData(X, Y).Graphic(LoopC).GrhIndex > 0 Then
 
-                InitGrh MapData(x, y).Graphic(LoopC), MapData(x, y).Graphic(LoopC).GrhIndex
+                InitGrh MapData(X, Y).Graphic(LoopC), MapData(X, Y).Graphic(LoopC).GrhIndex
 
             End If
         
         Next LoopC
         'Trigger
-        Get #1, , MapData(x, y).Trigger
+        Get #1, , MapData(X, Y).Trigger
         
-        Get #1, , TempInt
+        Get #1, , tempint
         '.inf file
         
         'Tile exit
-        Get #2, , MapData(x, y).TileExit.Map
-        Get #2, , MapData(x, y).TileExit.x
-        Get #2, , MapData(x, y).TileExit.y
+        Get #2, , MapData(X, Y).TileExit.Map
+        Get #2, , MapData(X, Y).TileExit.X
+        Get #2, , MapData(X, Y).TileExit.Y
                       
         'make NPC
-        Get #2, , MapData(x, y).NPCIndex
-        If MapData(x, y).NPCIndex > 0 Then
+        Get #2, , MapData(X, Y).NPCIndex
+        If MapData(X, Y).NPCIndex > 0 Then
             
-            If MapData(x, y).NPCIndex > 499 Then
-                Body = Val(GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(x, y).NPCIndex, "Body"))
-                Head = Val(GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(x, y).NPCIndex, "Head"))
-                Heading = Val(GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(x, y).NPCIndex, "Heading"))
+            If MapData(X, Y).NPCIndex > 499 Then
+                Body = Val(GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(X, Y).NPCIndex, "Body"))
+                Head = Val(GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(X, Y).NPCIndex, "Head"))
+                Heading = Val(GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(X, Y).NPCIndex, "Heading"))
             Else
-                Body = Val(GetVar(IniDats & "NPCs.dat", "NPC" & MapData(x, y).NPCIndex, "Body"))
-                Head = Val(GetVar(IniDats & "NPCs.dat", "NPC" & MapData(x, y).NPCIndex, "Head"))
-                Heading = Val(GetVar(IniDats & "NPCs.dat", "NPC" & MapData(x, y).NPCIndex, "Heading"))
+                Body = Val(GetVar(IniDats & "NPCs.dat", "NPC" & MapData(X, Y).NPCIndex, "Body"))
+                Head = Val(GetVar(IniDats & "NPCs.dat", "NPC" & MapData(X, Y).NPCIndex, "Head"))
+                Heading = Val(GetVar(IniDats & "NPCs.dat", "NPC" & MapData(X, Y).NPCIndex, "Heading"))
             End If
             
-            Call MakeChar(NextOpenChar(), Body, Head, Heading, x, y)
+            Call MakeChar(NextOpenChar(), Body, Head, Heading, X, Y)
         End If
         
         'Make obj
-        Get #2, , MapData(x, y).OBJInfo.objindex
-        Get #2, , MapData(x, y).OBJInfo.Amount
-        If MapData(x, y).OBJInfo.objindex > 0 Then
-            InitGrh MapData(x, y).ObjGrh, Val(GetVar(IniDats & "OBJ.dat", "OBJ" & MapData(x, y).OBJInfo.objindex, "GrhIndex"))
+        Get #2, , MapData(X, Y).OBJInfo.objindex
+        Get #2, , MapData(X, Y).OBJInfo.Amount
+        If MapData(X, Y).OBJInfo.objindex > 0 Then
+            InitGrh MapData(X, Y).ObjGrh, Val(GetVar(IniDats & "OBJ.dat", "OBJ" & MapData(X, Y).OBJInfo.objindex, "GrhIndex"))
         End If
         
         'Empty place holders for future expansion
-        Get #2, , TempInt
-        Get #2, , TempInt
+        Get #2, , tempint
+        Get #2, , tempint
              
-    Next x
-Next y
+    Next X
+Next Y
 
 'Close files
 Close #1
@@ -153,8 +253,8 @@ Map = Left(Map, Len(Map) - 4) & ".dat"
 MapInfo.Name = GetVar(IniMaps & Map, Left(Map, Len(Map) - 4), "Name")
 MapInfo.Music = GetVar(IniMaps & Map, Left(Map, Len(Map) - 4), "MusicNum")
 MapInfo.StartPos.Map = Val(ReadField(1, GetVar(IniMaps & Map, Left(Map, Len(Map) - 4), "StartPos"), 45))
-MapInfo.StartPos.x = Val(ReadField(2, GetVar(Map, Left(Map, Len(Map) - 4), "StartPos"), 45))
-MapInfo.StartPos.y = Val(ReadField(3, GetVar(Map, Left(Map, Len(Map) - 4), "StartPos"), 45))
+MapInfo.StartPos.X = Val(ReadField(2, GetVar(Map, Left(Map, Len(Map) - 4), "StartPos"), 45))
+MapInfo.StartPos.Y = Val(ReadField(3, GetVar(Map, Left(Map, Len(Map) - 4), "StartPos"), 45))
 frmMain.Text2.Text = MapInfo.Music
 
 
@@ -198,14 +298,14 @@ MapaCargado = True
 frmMain.mAncho.SetFocus
 End Sub
 Sub ActualizaDespGrilla()
-If UserPos.x - 8 < 1 Or UserPos.y - 6 < 1 Then Exit Sub
+If UserPos.X - 8 < 1 Or UserPos.Y - 6 < 1 Then Exit Sub
 Dim i As Integer, j As Integer
 gDespX = 0
 gDespY = 0
 j = 1
    
-If UserPos.y - 6 <> 1 Then
-   Do While j <> UserPos.y - 6
+If UserPos.Y - 6 <> 1 Then
+   Do While j <> UserPos.Y - 6
         gDespY = gDespY - 32
         If gDespY = -Val(frmGrilla.Alto) Then gDespY = 0
         j = j + 1
@@ -213,8 +313,8 @@ If UserPos.y - 6 <> 1 Then
 End If
 
 i = 1
-If UserPos.x - 8 <> 1 Then
-    Do While i <> UserPos.x - 8
+If UserPos.X - 8 <> 1 Then
+    Do While i <> UserPos.X - 8
         gDespX = gDespX - 32
         If gDespX = -Val(frmGrilla.Ancho) Then gDespX = 0
         i = i + 1
@@ -226,10 +326,10 @@ Sub CheckKeys()
 
     If GetKeyState(vbKeyUp) < 0 Then
         
-        If LegalPos(UserPos.x, UserPos.y - 1) Then
-            UserPos.y = UserPos.y - 1
+        If LegalPos(UserPos.X, UserPos.Y - 1) Then
+            UserPos.Y = UserPos.Y - 1
             ActualizaDespGrilla
-            frmMain.Apuntador.Move UserPos.x - 8, UserPos.y - 6
+            frmMain.Apuntador.Move UserPos.X - 8, UserPos.Y - 6
             frmMain.SetFocus
         End If
         
@@ -237,30 +337,30 @@ Sub CheckKeys()
     End If
 
     If GetKeyState(vbKeyRight) < 0 Then
-        If LegalPos(UserPos.x + 1, UserPos.y) Then
-            UserPos.x = UserPos.x + 1
+        If LegalPos(UserPos.X + 1, UserPos.Y) Then
+            UserPos.X = UserPos.X + 1
             ActualizaDespGrilla
-            frmMain.Apuntador.Move UserPos.x - 8, UserPos.y - 6
+            frmMain.Apuntador.Move UserPos.X - 8, UserPos.Y - 6
             frmMain.SetFocus
         End If
         Exit Sub
     End If
 
     If GetKeyState(vbKeyDown) < 0 Then
-        If LegalPos(UserPos.x, UserPos.y + 1) Then
-            UserPos.y = UserPos.y + 1
+        If LegalPos(UserPos.X, UserPos.Y + 1) Then
+            UserPos.Y = UserPos.Y + 1
             ActualizaDespGrilla
-            frmMain.Apuntador.Move UserPos.x - 8, UserPos.y - 6
+            frmMain.Apuntador.Move UserPos.X - 8, UserPos.Y - 6
             frmMain.SetFocus
         End If
         Exit Sub
     End If
 
     If GetKeyState(vbKeyLeft) < 0 Then
-        If LegalPos(UserPos.x - 1, UserPos.y) Then
-            UserPos.x = UserPos.x - 1
+        If LegalPos(UserPos.X - 1, UserPos.Y) Then
+            UserPos.X = UserPos.X - 1
             ActualizaDespGrilla
-            frmMain.Apuntador.Move UserPos.x - 8, UserPos.y - 6
+            frmMain.Apuntador.Move UserPos.X - 8, UserPos.Y - 6
             frmMain.SetFocus
         End If
         Exit Sub
@@ -294,7 +394,7 @@ If Button = vbRightButton Then
     
     'Exits
     If MapData(tX, tY).TileExit.Map > 0 Then
-        frmMain.StatTxt.Text = frmMain.StatTxt.Text & ENDL & "Salida a: " & MapData(tX, tY).TileExit.Map & "," & MapData(tX, tY).TileExit.x & "," & MapData(tX, tY).TileExit.y
+        frmMain.StatTxt.Text = frmMain.StatTxt.Text & ENDL & "Salida a: " & MapData(tX, tY).TileExit.Map & "," & MapData(tX, tY).TileExit.X & "," & MapData(tX, tY).TileExit.Y
     End If
     
     'NPCs
@@ -359,8 +459,8 @@ If Button = vbLeftButton Then
           
          If frmMain.EM.value = 1 Then
             MapData(EX, EY).TileExit.Map = Val(frmHerramientas.MapExitTxt.Text)
-            MapData(EX, EY).TileExit.x = Val(tX)
-            MapData(EX, EY).TileExit.y = Val(tY)
+            MapData(EX, EY).TileExit.X = Val(tX)
+            MapData(EX, EY).TileExit.Y = Val(tY)
             objindex = 378
             InitGrh MapData(EX, EY).ObjGrh, Val(GetVar(IniDats & "OBJ.dat", "OBJ" & objindex, "GrhIndex"))
             MapData(EX, EY).OBJInfo.objindex = objindex
@@ -465,30 +565,30 @@ If Button = vbLeftButton Then
             If frmHerramientas.Adya = vbChecked Then
                 MapData(tX, tY).TileExit.Map = Val(frmHerramientas.MapExitTxt.Text)
                 If tX = 92 Then
-                          MapData(tX, tY).TileExit.x = 10
-                          MapData(tX, tY).TileExit.y = tY
+                          MapData(tX, tY).TileExit.X = 10
+                          MapData(tX, tY).TileExit.Y = tY
                 ElseIf tX = 9 Then
-                    MapData(tX, tY).TileExit.x = 91
-                    MapData(tX, tY).TileExit.y = tY
+                    MapData(tX, tY).TileExit.X = 91
+                    MapData(tX, tY).TileExit.Y = tY
                 End If
                 
                 If tY = 94 Then
-                         MapData(tX, tY).TileExit.y = 8
-                         MapData(tX, tY).TileExit.x = tX
+                         MapData(tX, tY).TileExit.Y = 8
+                         MapData(tX, tY).TileExit.X = tX
                 ElseIf tY = 7 Then
-                    MapData(tX, tY).TileExit.y = 93
-                    MapData(tX, tY).TileExit.x = tX
+                    MapData(tX, tY).TileExit.Y = 93
+                    MapData(tX, tY).TileExit.X = tX
                 End If
                         
             Else
                 MapData(tX, tY).TileExit.Map = Val(frmHerramientas.MapExitTxt.Text)
-                MapData(tX, tY).TileExit.x = Val(frmHerramientas.XExitTxt.Text)
-                MapData(tX, tY).TileExit.y = Val(frmHerramientas.YExitTxt.Text)
+                MapData(tX, tY).TileExit.X = Val(frmHerramientas.XExitTxt.Text)
+                MapData(tX, tY).TileExit.Y = Val(frmHerramientas.YExitTxt.Text)
             End If
         Else
             MapData(tX, tY).TileExit.Map = 0
-            MapData(tX, tY).TileExit.x = 0
-            MapData(tX, tY).TileExit.y = 0
+            MapData(tX, tY).TileExit.X = 0
+            MapData(tX, tY).TileExit.Y = 0
         End If
     End If
 
@@ -821,12 +921,12 @@ End If
 If WalkMode = False Then
     'Erase character
     Call EraseChar(UserCharIndex)
-    MapData(UserPos.x, UserPos.y).CharIndex = 0
+    MapData(UserPos.X, UserPos.Y).CharIndex = 0
 Else
     'MakeCharacter
-    If LegalPos(UserPos.x, UserPos.y) Then
-        Call MakeChar(NextOpenChar(), 1, 1, SOUTH, UserPos.x, UserPos.y)
-        UserCharIndex = MapData(UserPos.x, UserPos.y).CharIndex
+    If LegalPos(UserPos.X, UserPos.Y) Then
+        Call MakeChar(NextOpenChar(), 1, 1, SOUTH, UserPos.X, UserPos.Y)
+        UserCharIndex = MapData(UserPos.X, UserPos.Y).CharIndex
     Else
         MsgBox "Error: ubicacion ilegal."
         'frmMain.WalkModeChk.value = 0
@@ -837,7 +937,7 @@ End Sub
 
 
 
-Sub FixCoasts(ByVal GrhIndex As Integer, ByVal x As Integer, ByVal y As Integer)
+Sub FixCoasts(ByVal GrhIndex As Integer, ByVal X As Integer, ByVal Y As Integer)
 
 If GrhIndex = 7284 Or GrhIndex = 7290 Or GrhIndex = 7291 Or GrhIndex = 7297 Or _
    GrhIndex = 7300 Or GrhIndex = 7301 Or GrhIndex = 7302 Or GrhIndex = 7303 Or _
@@ -851,15 +951,15 @@ If GrhIndex = 7284 Or GrhIndex = 7290 Or GrhIndex = 7291 Or GrhIndex = 7297 Or _
    GrhIndex = 7354 Or GrhIndex = 7357 Or GrhIndex = 7358 Or GrhIndex = 7360 Or _
    GrhIndex = 7362 Or GrhIndex = 7363 Or GrhIndex = 7365 Or GrhIndex = 7366 Or _
    GrhIndex = 7367 Or GrhIndex = 7368 Or GrhIndex = 7369 Or GrhIndex = 7371 Or _
-   GrhIndex = 7373 Or GrhIndex = 7375 Or GrhIndex = 7376 Then MapData(x, y).Graphic(2).GrhIndex = 0
+   GrhIndex = 7373 Or GrhIndex = 7375 Or GrhIndex = 7376 Then MapData(X, Y).Graphic(2).GrhIndex = 0
 
 End Sub
 
 Sub SaveMapData(SaveAs As String)
 Dim LoopC As Integer
-Dim TempInt As Integer
-Dim y As Integer
-Dim x As Integer
+Dim tempint As Integer
+Dim Y As Integer
+Dim X As Integer
 
 On Error Resume Next
 
@@ -904,52 +1004,52 @@ End If
 
 Put #1, , MiCabecera
 
-Put #1, , TempInt
-Put #1, , TempInt
-Put #1, , TempInt
-Put #1, , TempInt
+Put #1, , tempint
+Put #1, , tempint
+Put #1, , tempint
+Put #1, , tempint
 
 'inf Header
-Put #2, , TempInt
-Put #2, , TempInt
-Put #2, , TempInt
-Put #2, , TempInt
-Put #2, , TempInt
+Put #2, , tempint
+Put #2, , tempint
+Put #2, , tempint
+Put #2, , tempint
+Put #2, , tempint
 
 'Write .map file
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
         
         '.map file
-        Put #1, , MapData(x, y).Blocked
+        Put #1, , MapData(X, Y).Blocked
         For LoopC = 1 To 4
-            If LoopC = 2 Then Call FixCoasts(MapData(x, y).Graphic(LoopC).GrhIndex, x, y)
-            Put #1, , MapData(x, y).Graphic(LoopC).GrhIndex
+            If LoopC = 2 Then Call FixCoasts(MapData(X, Y).Graphic(LoopC).GrhIndex, X, Y)
+            Put #1, , MapData(X, Y).Graphic(LoopC).GrhIndex
         Next LoopC
         
-        Put #1, , MapData(x, y).Trigger
+        Put #1, , MapData(X, Y).Trigger
         
-        Put #1, , TempInt
+        Put #1, , tempint
         
         '.inf file
         'Tile exit
-        Put #2, , MapData(x, y).TileExit.Map
-        Put #2, , MapData(x, y).TileExit.x
-        Put #2, , MapData(x, y).TileExit.y
+        Put #2, , MapData(X, Y).TileExit.Map
+        Put #2, , MapData(X, Y).TileExit.X
+        Put #2, , MapData(X, Y).TileExit.Y
         
         'NPC
-        Put #2, , MapData(x, y).NPCIndex
+        Put #2, , MapData(X, Y).NPCIndex
         
         'Object
-        Put #2, , MapData(x, y).OBJInfo.objindex
-        Put #2, , MapData(x, y).OBJInfo.Amount
+        Put #2, , MapData(X, Y).OBJInfo.objindex
+        Put #2, , MapData(X, Y).OBJInfo.Amount
         
         'Empty place holders for future expansion
-        Put #2, , TempInt
-        Put #2, , TempInt
+        Put #2, , tempint
+        Put #2, , tempint
         
-    Next x
-Next y
+    Next X
+Next Y
 
 'Close .map file
 Close #1
@@ -965,7 +1065,7 @@ SaveAs = Left(SaveAs, Len(SaveAs) - 4) & ".dat"
 
 Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "Name", MapInfo.Name)
 Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "MusicNum", frmMain.Text2.Text)
-Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "StartPos", MapInfo.StartPos.Map & "-" & MapInfo.StartPos.x & "-" & MapInfo.StartPos.y)
+Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "StartPos", MapInfo.StartPos.Map & "-" & MapInfo.StartPos.X & "-" & MapInfo.StartPos.Y)
 
 
 If frmCarac.Option1(0).value Then
@@ -990,7 +1090,7 @@ Else
 End If
 
 Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "MusicNum", frmMain.Text2.Text)
-Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "StartPos", MapInfo.StartPos.Map & "-" & MapInfo.StartPos.x & "-" & MapInfo.StartPos.y)
+Call WriteVar(IniMaps & SaveAs, Left(SaveAs, Len(SaveAs) - 4), "StartPos", MapInfo.StartPos.Map & "-" & MapInfo.StartPos.X & "-" & MapInfo.StartPos.Y)
 
 'Change mouse icon
 frmMain.MousePointer = 0
@@ -1064,7 +1164,7 @@ frmGrafico.ShowPic = frmGrafico.Picture1
     If frmMain.MOSAICO = vbUnchecked Then
         Call DrawGrhtoHdc(frmGrafico.ShowPic.hdc, CurrentGrh, 0, 0, 0, 0, SRCCOPY)
     Else
-        Dim x As Integer, y As Integer, j As Integer, i As Integer
+        Dim X As Integer, Y As Integer, j As Integer, i As Integer
         Dim cont As Integer
         For i = 1 To CInt(Val(frmMain.mLargo))
             For j = 1 To CInt(Val(frmMain.mAncho))

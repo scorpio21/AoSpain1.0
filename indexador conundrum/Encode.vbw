@@ -1,0 +1,14 @@
+frmMain = 18, -11, 764, 441, , 66, 66, 435, 414, C
+Api = 110, 110, 691, 457, C
+Mod_Declaraciones = 110, 110, 691, 457, 
+GameIni = 66, 66, 647, 413, 
+Indices = 0, 0, 581, 347, 
+Mod_TileEngine = 22, 22, 603, 369, 
+clsSurfaceManager = 132, 132, 713, 479, C
+clsSurfaceManDyn = 154, 154, 735, 501, 
+Mod_DX = 154, 154, 735, 501, 
+FrmConfig = 132, 132, 778, 435, C, 0, 0, 476, 326, C
+FrmSearch = 44, 44, 520, 370, , 22, 22, 498, 348, C
+clsIniReader = 44, 44, 541, 365, 
+FormAuto = 132, 132, 665, 580, , 110, 110, 643, 558, C
+GeneralES = 132, 132, 684, 576, Z

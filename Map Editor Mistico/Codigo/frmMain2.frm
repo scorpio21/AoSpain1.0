@@ -987,6 +987,9 @@ Begin VB.Form frmMain
       Begin VB.Menu mnuNuevo2 
          Caption         =   "Rellenar en 2x2"
       End
+      Begin VB.Menu mnuCargarS 
+         Caption         =   "Cargar Mapa sin datos"
+      End
       Begin VB.Menu mnuCargar 
          Caption         =   "Cargar Mapa"
       End
@@ -1139,13 +1142,13 @@ End With
 End Sub
 
 Private Sub borratri_Click()
-Dim y As Integer
-Dim x As Integer
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
-        MapData(x, y).Trigger = 0
-    Next x
-Next y
+Dim Y As Integer
+Dim X As Integer
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
+        MapData(X, Y).Trigger = 0
+    Next X
+Next Y
 
 End Sub
 
@@ -1177,18 +1180,18 @@ Private Sub Command4_Click(Index As Integer)
 If MsgBox("Cuidado, con este comando podes arruinar el mapa.¿Estas seguro que queres hacer esto?", vbYesNo) = vbNo Then
         Exit Sub
 End If
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
-        MapData(x, y).Blocked = 1
-    Next x
-Next y
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
+        MapData(X, Y).Blocked = 1
+    Next X
+Next Y
 
 MapInfo.Changed = 1
 End Sub
@@ -1197,18 +1200,18 @@ Private Sub Command5_Click(Index As Integer)
 If MsgBox("Cuidado, con este comando podes arruinar el mapa.¿Estas seguro que queres hacer esto?", vbYesNo) = vbNo Then
         Exit Sub
 End If
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
-        MapData(x, y).Blocked = 0
-    Next x
-Next y
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
+        MapData(X, Y).Blocked = 0
+    Next X
+Next Y
 
 MapInfo.Changed = 0
 End Sub
@@ -1268,7 +1271,7 @@ Private Sub MapExitTxt_Change()
 frmHerramientas.MapExitTxt.Text = MapExitTxt.Text
 End Sub
 
-Private Sub MasX_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub MasX_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
 Dim CoorX As Integer
 
 CoorX = Val(frmHerramientas.XExitTxt.Text)
@@ -1287,7 +1290,7 @@ CoorX = Val(frmHerramientas.XExitTxt.Text)
 XExitTxt = frmHerramientas.XExitTxt.Text
 End Sub
 
-Private Sub MenosX_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub MenosX_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
 Dim CoorX As Integer
 
 CoorX = Val(frmHerramientas.XExitTxt.Text)
@@ -1306,7 +1309,7 @@ CoorX = Val(frmHerramientas.XExitTxt.Text)
 XExitTxt = frmHerramientas.XExitTxt.Text
 End Sub
 
-Private Sub MasY_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub MasY_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
 Dim CoorY As Integer
 
 CoorY = Val(frmHerramientas.YExitTxt.Text)
@@ -1325,7 +1328,7 @@ CoorY = Val(frmHerramientas.YExitTxt.Text)
 YExitTxt = frmHerramientas.YExitTxt.Text
 End Sub
 
-Private Sub MenosY_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub MenosY_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
 Dim CoorY As Integer
 
 CoorY = Val(frmHerramientas.YExitTxt.Text)
@@ -1347,21 +1350,21 @@ End Sub
 
 Private Sub mnuBloquear_Click()
 
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
 
-        If x < MinXBorder Or x > MaxXBorder Or y < MinYBorder Or y > MaxYBorder Then
-            MapData(x, y).Blocked = 1
+        If X < MinXBorder Or X > MaxXBorder Or Y < MinYBorder Or Y > MaxYBorder Then
+            MapData(X, Y).Blocked = 1
         End If
-    Next x
-Next y
+    Next X
+Next Y
 
 'Set changed flag
 MapInfo.Changed = 1
@@ -1369,25 +1372,25 @@ MapInfo.Changed = 1
 End Sub
 
 Private Sub mnuborrarArboles_Click()
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = 1 To 100
-    For x = 1 To 100
+For Y = 1 To 100
+    For X = 1 To 100
     
-        If MapData(x, y).OBJInfo.objindex > 0 Then
+        If MapData(X, Y).OBJInfo.objindex > 0 Then
             
             Dim c As String
-            c = GetVar(IniDats & "OBJ.dat", "OBJ" & MapData(x, y).OBJInfo.objindex, "Objtype")
+            c = GetVar(IniDats & "OBJ.dat", "OBJ" & MapData(X, Y).OBJInfo.objindex, "Objtype")
             If c = "" Then c = 0
             If Val(c) = 4 Then
-                    MapData(x, y).OBJInfo.objindex = 0
-                    MapData(x, y).Blocked = 0
-                    MapData(x, y).OBJInfo.Amount = 0
+                    MapData(X, Y).OBJInfo.objindex = 0
+                    MapData(X, Y).Blocked = 0
+                    MapData(X, Y).OBJInfo.Amount = 0
                 End If
             End If
 '                If MapData(x, y).OBJInfo.objindex = 4 Or _
@@ -1411,32 +1414,32 @@ Next
 
 End Sub
 Private Sub mnuborrarNpcs_Click()
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = 1 To 100
-    For x = 1 To 100
+For Y = 1 To 100
+    For X = 1 To 100
     
-        If MapData(x, y).OBJInfo.objindex > 0 Then
+        If MapData(X, Y).OBJInfo.objindex > 0 Then
             
             Dim c As String
-            c = GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(x, y).NPCIndex, "Objtype")
+            c = GetVar(IniDats & "NPCs-HOSTILES.dat", "NPC" & MapData(X, Y).NPCIndex, "Objtype")
             If c = "" Then c = 0
             If Val(c) = 4 Then
-                    MapData(x, y).OBJInfo.objindex = 0
-                    MapData(x, y).Blocked = 0
-                    MapData(x, y).OBJInfo.Amount = 0
+                    MapData(X, Y).OBJInfo.objindex = 0
+                    MapData(X, Y).Blocked = 0
+                    MapData(X, Y).OBJInfo.Amount = 0
                 End If
             End If
             
             
-            If MapData(x, y).NPCIndex > 0 Then
-            EraseChar MapData(x, y).CharIndex
-            MapData(x, y).NPCIndex = 0
+            If MapData(X, Y).NPCIndex > 0 Then
+            EraseChar MapData(X, Y).CharIndex
+            MapData(X, Y).NPCIndex = 0
         End If
         
     Next
@@ -1462,12 +1465,38 @@ If MapInfo.Changed = 1 Then
 End If
 
 
-    UserPos.x = (WindowTileWidth \ 2) + 1
+    UserPos.X = (WindowTileWidth \ 2) + 1
     
-    UserPos.y = (WindowTileHeight \ 2) + 1
+    UserPos.Y = (WindowTileHeight \ 2) + 1
+    
+    'Call mnunuevo_Click
+    Call SwitchMap(Dialog.FileName)
+    EngineRun = True
+Exit Sub
+
+ErrHandler:
+MsgBox Err.Description
+End Sub
+
+Private Sub mnuCargarS_Click()
+Dialog.CancelError = True
+On Error GoTo ErrHandler
+Call ObtenerNombreArchivo(False)
+
+
+'If MapInfo.Changed = 1 Then
+'    If MsgBox("Este mapa há sido modificado. Vas a perder todos los cambios si no lo grabas. Lo queres grabar ahora?", vbYesNo) = vbYes Then
+'        Call SaveMapData(Dialog.FileName)
+'    End If
+'End If
+
+
+    UserPos.X = (WindowTileWidth \ 2) + 1
+    
+    UserPos.Y = (WindowTileHeight \ 2) + 1
     
     Call mnunuevo_Click
-    Call SwitchMap(Dialog.FileName)
+    Call SwitchMap2(Dialog.FileName)
     EngineRun = True
 Exit Sub
 
@@ -1490,56 +1519,56 @@ End Sub
 Private Sub mnunuevo_Click()
 
 
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 Call borratri_Click
 
 frmMain.MousePointer = 11
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
-        MapData(x, y).Graphic(1).GrhIndex = 1
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
+        MapData(X, Y).Graphic(1).GrhIndex = 1
         'Change blockes status
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
 
         'Erase layer 2 and 3
-        MapData(x, y).Graphic(2).GrhIndex = 0
-        MapData(x, y).Graphic(3).GrhIndex = 0
-        MapData(x, y).Graphic(4).GrhIndex = 0
+        MapData(X, Y).Graphic(2).GrhIndex = 0
+        MapData(X, Y).Graphic(3).GrhIndex = 0
+        MapData(X, Y).Graphic(4).GrhIndex = 0
 
         'Erase NPCs
-        If MapData(x, y).NPCIndex > 0 Then
-            EraseChar MapData(x, y).CharIndex
-            MapData(x, y).NPCIndex = 0
+        If MapData(X, Y).NPCIndex > 0 Then
+            EraseChar MapData(X, Y).CharIndex
+            MapData(X, Y).NPCIndex = 0
         End If
 
         'Erase Objs
-        MapData(x, y).OBJInfo.objindex = 0
-        MapData(x, y).OBJInfo.Amount = 0
-        MapData(x, y).ObjGrh.GrhIndex = 0
+        MapData(X, Y).OBJInfo.objindex = 0
+        MapData(X, Y).OBJInfo.Amount = 0
+        MapData(X, Y).ObjGrh.GrhIndex = 0
 
         'Clear exits
-        MapData(x, y).TileExit.Map = 0
-        MapData(x, y).TileExit.x = 0
-        MapData(x, y).TileExit.y = 0
+        MapData(X, Y).TileExit.Map = 0
+        MapData(X, Y).TileExit.X = 0
+        MapData(X, Y).TileExit.Y = 0
          
          
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
-        MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
             
-        InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
+        InitGrh MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
         
-    Next x
-Next y
+    Next X
+Next Y
 
 
 MapInfo.Changed = 1
 MapInfo.MapVersion = 0
 
 Text1.Text = "Nuevo Mapa"
-UserPos.x = (WindowTileWidth \ 2) + 1
+UserPos.X = (WindowTileWidth \ 2) + 1
 
-UserPos.y = (WindowTileHeight \ 2) + 1
+UserPos.Y = (WindowTileHeight \ 2) + 1
 
 'CurMap = frmCargar.MapLst.ListCount
 MapaCargado = True
@@ -1550,24 +1579,24 @@ End Sub
 Private Sub mnunuevo3_Click()
 
 
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 Call borratri_Click
 
 frmMain.MousePointer = 11
-For y = YMinMapSize To YMaxMapSize Step 4
-    For x = XMinMapSize To XMaxMapSize Step 4
-        MapData(x, y).Graphic(1).GrhIndex = 3
+For Y = YMinMapSize To YMaxMapSize Step 4
+    For X = XMinMapSize To XMaxMapSize Step 4
+        MapData(X, Y).Graphic(1).GrhIndex = 3
         'Change blockes status
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
 
         'Erase layer 2 and 3
         'If y - 1 Mod 4 = 0 And x - 1 Mod 4 = 0 Or x = 1 Or y = 1 Then
         Dim tXX As Integer, tYY As Integer, i As Integer, j As Integer, desptile As Integer
         Dim aux As Integer
-            tXX = x
-            tYY = y
+            tXX = X
+            tYY = Y
             desptile = 0
          
             For i = 1 To 4
@@ -1582,29 +1611,29 @@ For y = YMinMapSize To YMaxMapSize Step 4
                       If tXX < 100 Then tXX = tXX + 1
                      desptile = desptile + 1
                 Next
-                tXX = x
+                tXX = X
                 If tYY < 100 Then tYY = tYY + 1
             Next
        ' End If
         
          
          
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
         'MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
             
         'InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
         
-    Next x
-Next y
+    Next X
+Next Y
 
 
 MapInfo.Changed = 1
 MapInfo.MapVersion = 0
 
 Text1.Text = "Nuevo Mapa"
-UserPos.x = (WindowTileWidth \ 2) + 1
+UserPos.X = (WindowTileWidth \ 2) + 1
 
-UserPos.y = (WindowTileHeight \ 2) + 1
+UserPos.Y = (WindowTileHeight \ 2) + 1
 
 'CurMap = frmCargar.MapLst.ListCount
 MapaCargado = True
@@ -1614,24 +1643,24 @@ End Sub
 Private Sub mnuNuevo2_Click()
 
 
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 Call borratri_Click
 
 frmMain.MousePointer = 11
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
         'MapData(x, y).Graphic(1).GrhIndex = 3
         'Change blockes status
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
 
         'Erase layer 2 and 3
-        If y Mod 2 <> 0 And x Mod 2 <> 0 Then
+        If Y Mod 2 <> 0 And X Mod 2 <> 0 Then
         Dim tXX As Integer, tYY As Integer, i As Integer, j As Integer, desptile As Integer
         Dim aux As Integer
-            tXX = x
-            tYY = y
+            tXX = X
+            tYY = Y
             desptile = 0
          
             For i = 1 To 2
@@ -1646,28 +1675,28 @@ For y = YMinMapSize To YMaxMapSize
                       If tXX < 100 Then tXX = tXX + 1
                      desptile = desptile + 1
                 Next
-                tXX = x
+                tXX = X
                 If tYY < 100 Then tYY = tYY + 1
             Next
         End If
        
          
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
         'MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
             
         'InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
         
-    Next x
-Next y
+    Next X
+Next Y
 
 
 MapInfo.Changed = 1
 MapInfo.MapVersion = 0
 
 Text1.Text = "Nuevo Mapa"
-UserPos.x = (WindowTileWidth \ 2) + 1
+UserPos.X = (WindowTileWidth \ 2) + 1
 
-UserPos.y = (WindowTileHeight \ 2) + 1
+UserPos.Y = (WindowTileHeight \ 2) + 1
 
 'CurMap = frmCargar.MapLst.ListCount
 MapaCargado = True
@@ -1680,16 +1709,16 @@ If mAncho.Text = "" Then mAncho.Text = "1"
 If mLargo.Text = "" Then mLargo.Text = "1"
 End Sub
 
-Private Sub Picture1_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
-Apuntador.Move x, y
-UserPos.x = x
-UserPos.y = y
+Private Sub Picture1_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Apuntador.Move X, Y
+UserPos.X = X
+UserPos.Y = Y
 Call ActualizaDespGrilla
 End Sub
 
-Private Sub Picture1_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
-MiRadarX = x
-MiRadarY = y
+Private Sub Picture1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+MiRadarX = X
+MiRadarY = Y
 End Sub
 
 Public Sub PlaceBlockCmd_Click()
@@ -1730,55 +1759,55 @@ Private Sub ClsBordMnu_Click()
 'Clears a border in a room with current GRH
 '*****************************************************************
 
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
 
-        If x < MinXBorder Or x > MaxXBorder Or y < MinYBorder Or y > MaxYBorder Then
+        If X < MinXBorder Or X > MaxXBorder Or Y < MinYBorder Or Y > MaxYBorder Then
 
           If frmMain.MOSAICO.value = vbChecked Then
             Dim aux As Integer
             aux = Val(frmMain.Grhtxt.Text) + _
-            ((y Mod frmMain.mLargo) * frmMain.mAncho) + (x Mod frmMain.mAncho)
-             MapData(x, y).Blocked = frmMain.Blockedchk.value
-             MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = aux
+            ((Y Mod frmMain.mLargo) * frmMain.mAncho) + (X Mod frmMain.mAncho)
+             MapData(X, Y).Blocked = frmMain.Blockedchk.value
+             MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = aux
             'Setup GRH
-            InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), aux
+            InitGrh MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)), aux
           Else
             'Else Place graphic
-            MapData(x, y).Blocked = frmMain.Blockedchk.value
-            MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
+            MapData(X, Y).Blocked = frmMain.Blockedchk.value
+            MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
             
             'Setup GRH
     
-            InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
+            InitGrh MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
         End If
              'Erase NPCs
-            If MapData(x, y).NPCIndex > 0 Then
-                EraseChar MapData(x, y).CharIndex
-                MapData(x, y).NPCIndex = 0
+            If MapData(X, Y).NPCIndex > 0 Then
+                EraseChar MapData(X, Y).CharIndex
+                MapData(X, Y).NPCIndex = 0
             End If
 
             'Erase Objs
-            MapData(x, y).OBJInfo.objindex = 0
-            MapData(x, y).OBJInfo.Amount = 0
-            MapData(x, y).ObjGrh.GrhIndex = 0
+            MapData(X, Y).OBJInfo.objindex = 0
+            MapData(X, Y).OBJInfo.Amount = 0
+            MapData(X, Y).ObjGrh.GrhIndex = 0
 
             'Clear exits
-            MapData(x, y).TileExit.Map = 0
-            MapData(x, y).TileExit.x = 0
-            MapData(x, y).TileExit.y = 0
+            MapData(X, Y).TileExit.Map = 0
+            MapData(X, Y).TileExit.X = 0
+            MapData(X, Y).TileExit.Y = 0
 
         End If
 
-    Next x
-Next y
+    Next X
+Next Y
 
 'Set changed flag
 MapInfo.Changed = 1
@@ -1790,60 +1819,60 @@ Private Sub ClsRoomMnu_Click()
 'Clears all layers
 '*****************************************************************
 
-Dim y As Integer
-Dim x As Integer
+Dim Y As Integer
+Dim X As Integer
 
 If Not MapaCargado Then
     Exit Sub
 End If
 
-For y = YMinMapSize To YMaxMapSize
-    For x = XMinMapSize To XMaxMapSize
-        MapData(x, y).Graphic(1).GrhIndex = 3
+For Y = YMinMapSize To YMaxMapSize
+    For X = XMinMapSize To XMaxMapSize
+        MapData(X, Y).Graphic(1).GrhIndex = 3
         'Change blockes status
-        MapData(x, y).Blocked = frmMain.Blockedchk.value
+        MapData(X, Y).Blocked = frmMain.Blockedchk.value
 
         'Erase layer 2 and 3
-        MapData(x, y).Graphic(2).GrhIndex = 0
-        MapData(x, y).Graphic(3).GrhIndex = 0
-        MapData(x, y).Graphic(4).GrhIndex = 0
+        MapData(X, Y).Graphic(2).GrhIndex = 0
+        MapData(X, Y).Graphic(3).GrhIndex = 0
+        MapData(X, Y).Graphic(4).GrhIndex = 0
 
         'Erase NPCs
-        If MapData(x, y).NPCIndex > 0 Then
-            EraseChar MapData(x, y).CharIndex
-            MapData(x, y).NPCIndex = 0
+        If MapData(X, Y).NPCIndex > 0 Then
+            EraseChar MapData(X, Y).CharIndex
+            MapData(X, Y).NPCIndex = 0
         End If
 
         'Erase Objs
-        MapData(x, y).OBJInfo.objindex = 0
-        MapData(x, y).OBJInfo.Amount = 0
-        MapData(x, y).ObjGrh.GrhIndex = 0
+        MapData(X, Y).OBJInfo.objindex = 0
+        MapData(X, Y).OBJInfo.Amount = 0
+        MapData(X, Y).ObjGrh.GrhIndex = 0
 
         'Clear exits
-        MapData(x, y).TileExit.Map = 0
-        MapData(x, y).TileExit.x = 0
-        MapData(x, y).TileExit.y = 0
+        MapData(X, Y).TileExit.Map = 0
+        MapData(X, Y).TileExit.X = 0
+        MapData(X, Y).TileExit.Y = 0
 
         If frmMain.MOSAICO.value = vbChecked Then
             Dim aux As Integer
             aux = Val(frmMain.Grhtxt.Text) + _
-            ((y Mod frmMain.mLargo) * frmMain.mAncho) + (x Mod frmMain.mAncho)
-             MapData(x, y).Blocked = frmMain.Blockedchk.value
-             MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = aux
+            ((Y Mod frmMain.mLargo) * frmMain.mAncho) + (X Mod frmMain.mAncho)
+             MapData(X, Y).Blocked = frmMain.Blockedchk.value
+             MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = aux
             'Setup GRH
-            InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), aux
+            InitGrh MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)), aux
         Else
             'Else Place graphic
-            MapData(x, y).Blocked = frmMain.Blockedchk.value
-            MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
+            MapData(X, Y).Blocked = frmMain.Blockedchk.value
+            MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)).GrhIndex = Val(frmMain.Grhtxt.Text)
             
             'Setup GRH
     
-            InitGrh MapData(x, y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
+            InitGrh MapData(X, Y).Graphic(Val(frmMain.Layertxt.Text)), Val(frmMain.Grhtxt.Text)
         End If
 
-    Next x
-Next y
+    Next X
+Next Y
 
 'Set changed flag
 MapInfo.Changed = 1
@@ -1903,7 +1932,7 @@ End Sub
 
 
 
-Private Sub Command1_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Command1_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
 
 Dim Grh As Integer
 
@@ -1942,7 +1971,7 @@ Grhtxt.Text = Grh
 
 End Sub
 
-Private Sub Command3_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Command3_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
 
 Dim Grh As Integer
 
@@ -2002,25 +2031,25 @@ Private Sub Form_Load()
 frmMain.Caption = frmMain.Caption & " V " & App.Major & "." & App.Minor & "." & App.Revision
 
 End Sub
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
 
 Dim tX As Integer
 Dim tY As Integer
 
 If Not MapaCargado Then Exit Sub
 
-If x <= MainViewShp.Left Or x >= MainViewShp.Left + MainViewWidth Or y <= MainViewShp.Top Or y >= MainViewShp.Top + MainViewHeight Then
+If X <= MainViewShp.Left Or X >= MainViewShp.Left + MainViewWidth Or Y <= MainViewShp.Top Or Y >= MainViewShp.Top + MainViewHeight Then
     Exit Sub
 End If
 
-ConvertCPtoTP MainViewShp.Left, MainViewShp.Top, x, y, tX, tY
+ConvertCPtoTP MainViewShp.Left, MainViewShp.Top, X, Y, tX, tY
 
 ReacttoMouseClick Button, tX, tY
 
 End Sub
 
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 
 Dim tX As Integer
 Dim tY As Integer
@@ -2029,11 +2058,11 @@ Dim tY As Integer
 If Not MapaCargado Then Exit Sub
 
 'Make sure click is in view window
-If x <= MainViewShp.Left Or x >= MainViewShp.Left + MainViewWidth Or y <= MainViewShp.Top Or y >= MainViewShp.Top + MainViewHeight Then
+If X <= MainViewShp.Left Or X >= MainViewShp.Left + MainViewWidth Or Y <= MainViewShp.Top Or Y >= MainViewShp.Top + MainViewHeight Then
     Exit Sub
 End If
 
-ConvertCPtoTP MainViewShp.Left, MainViewShp.Top, x, y, tX, tY
+ConvertCPtoTP MainViewShp.Left, MainViewShp.Top, X, Y, tX, tY
 
 ReacttoMouseClick Button, tX, tY
 

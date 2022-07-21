@@ -1,0 +1,11 @@
+[History]
+1=#P0#=mb	#P1#=mnuGuardarcomoBMP_Click	#P2#=AomAniaWorldEditor/frmMain/mnuGuardarcomoBMP_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20220528192344	#P7#=0	#P8#=1	.
+2=#P0#=mb	#P1#=AbrirMapa	#P2#=AomAniaWorldEditor/modMapIO/AbrirMapa	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20220526190339	#P7#=0	#P8#=6	.
+3=#P0#=mb	#P1#=mnuAbrirMapa_Click	#P2#=AomAniaWorldEditor/frmMain/mnuAbrirMapa_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20220526190308	#P7#=0	#P8#=19	.
+4=#P0#=mb	#P1#=VerFuncion	#P2#=AomAniaWorldEditor/modPaneles/VerFuncion	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20220526185444	#P7#=0	#P8#=10	.
+5=#P0#=mb	#P1#=SelectPanel_Click	#P2#=AomAniaWorldEditor/frmMain/SelectPanel_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20220526185426	#P7#=0	#P8#=13	.
+6=#P0#=mb	#P1#=MapaV5_Cargar	#P2#=AomAniaWorldEditor/modMapIO/MapaV5_Cargar	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20220525144317	#P7#=0	#P8#=1	.
+7=#P0#=mb	#P1#=CargarMapIni	#P2#=AomAniaWorldEditor/modGeneral/CargarMapIni	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20220525143806	#P7#=0	#P8#=44	.
+8=#P0#=mb	#P1#=InitTileEngine	#P2#=AomAniaWorldEditor/modDirectDraw/InitTileEngine	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20220525143614	#P7#=0	#P8#=83	.
+9=#P0#=mb	#P1#=mnuActualizarGraficos_Click	#P2#=AomAniaWorldEditor/frmMain/mnuActualizarGraficos_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20220525143610	#P7#=0	#P8#=5	.
+10=#P0#=mb	#P1#=MapaV1_Cargar	#P2#=AomAniaWorldEditor/modMapIO/MapaV1_Cargar	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20220525143319	#P7#=0	#P8#=0	.

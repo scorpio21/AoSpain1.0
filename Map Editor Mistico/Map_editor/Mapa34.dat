@@ -1,0 +1,19 @@
+[Mapa]
+Name=
+MusicNum=
+MinLevel=0
+MagiaSinefecto=0
+SeCaenItems=1
+PuedeMascotas=0
+Terreno=BOSQUE
+Zona=CAMPO
+Restringir=No
+BackUp= 0
+Pk=0
+[MAPA33]
+MinLevel=0
+MagiaSinefecto=0
+SeCaenItems=1
+PuedeMascotas=0
+BackUp= 0
+Pk=0
